@@ -1,3 +1,3 @@
 module.exports = {
-  TITLE: "Event Scheduler"
+  TITLE: "Mini Node Project"
 }

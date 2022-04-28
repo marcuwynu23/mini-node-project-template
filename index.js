@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session")
 const nunjucks = require("nunjucks")
 const constants = require("./constants")
+const logger = require('morgan')
 
 const app = express()
 nunjucks.configure(path.resolve(__dirname,'view'),{
@@ -13,6 +14,7 @@ nunjucks.configure(path.resolve(__dirname,'view'),{
   watch:true
 })
 
+app.use(logger('dev',{}))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 

@@ -7,35 +7,37 @@ const constants = require("./constants")
 const logger = require('morgan')
 
 const app = express()
-nunjucks.configure(path.resolve(__dirname,'view'),{
-  express:app,
-  autoscape:true,
-  noCache:false,
-  watch:true
+nunjucks.configure(path.resolve(__dirname, 'view'), {
+  express: app,
+  autoscape: true,
+  noCache: false,
+  watch: true
 })
 
-app.use(logger('dev',{}))
+app.use(logger('dev', {}))
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 app.use(session({
-  secret:"secret of the star",
+  secret: "secret of the star",
   saveUninitialized: false,
   resave: false
 }))
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.get("/",(req,res)=>{
-  return res.render("index.html",{context: {
-    title: constants.TITLE
-  }});
+app.get("/", (req, res) => {
+  return res.render("index.html", {
+    context: {
+      title: constants.TITLE
+    }
+  });
 })
 
 const PORT = 9000;
-app.listen(process.env.PORT || PORT,(err)=>{
-  if(err){
+app.listen(process.env.PORT || PORT, (err) => {
+  if (err) {
     console.log(err)
-   }else{
+  } else {
     console.log(`Running Server on ${PORT}...`)
-   }
+  }
 });
